@@ -10,6 +10,7 @@ pipeline {
                 git branch: 'main', changelog: false, poll: false, url: 'https://github.com/saeedhmohd244/zomato.git'
             }
         }
+        
         stage('SonarQube Analysis') {
             steps {
                 script {
