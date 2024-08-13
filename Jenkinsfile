@@ -1,8 +1,6 @@
 pipeline {
     agent any
-	tools{
-		jdk 'jdk17'
-	}
+	 
     environment {
         SONAR_SCANNER = tool 'sonar-scanner'
     }
@@ -19,7 +17,7 @@ pipeline {
                         -Dsonar.projectName=zomato \
                         -Dsonar.projectVersion=1.0 \
                         -Dsonar.projectKey=zomato \
-                        -Dsonar.host.url=http://3.83.165.89:9000 \
+                        -Dsonar.host.url=http://52.207.214.177:9000/ \
                         -Dsonar.login=d7a60efbb6e62c553b4796ca244203472bbc9a1f'''
                 }
             }
