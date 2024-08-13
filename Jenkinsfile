@@ -35,23 +35,19 @@ pipeline {
             }
         }
 
-        stage('Quality Gate') {
-            steps {
-                script {
-                    timeout(time: 2, unit: 'MINUTES') {
-                        withSonarQubeEnv('sonar-scanner') {  // Use the correct SonarQube environment
-                            def qg = waitForQualityGate()
-                            if (qg.status != 'OK') {
-                                error "Pipeline aborted due to quality gate failure: ${qg.status}"
-                            }
-                        }
-                    }
-                }
+        stage('dependency check'){
+            steps{
+                dependencyCheck additionalArguments: '--scan ./ --disableYarnAudit --disableNodeAudit', odcInstallation: 'DC-check'
+                dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
             }
         }
     }
     
     
 }
+
+
+
+
 
 
